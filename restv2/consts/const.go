@@ -1,0 +1,72 @@
+package consts
+
+const (
+	MASTER = "master"
+
+	HTTP_METHOD_GET  string = "GET"
+	HTTP_METHOD_POST string = "POST"
+
+	SPOT string = "SPOT"
+	SWAP string = "SWAP"
+
+	CROSS    string = "cross"
+	ISOLATED string = "isolated"
+	MERGE    string = "merge"
+	SPLIT    string = "split"
+
+	SIDE_BUY  string = "buy"
+	SIDE_SELL string = "sell"
+
+	ORDER_TYPE_MARKET    = "market"
+	ORDER_TYPE_LIMIT     = "limit"
+	ORDER_TYPE_POST_ONLY = "post_only"
+	ORDER_TYPE_IOC       = "ioc"
+
+	POSITION_SIDE_LONG  = "long"
+	POSITION_SIDE_SHORT = "short"
+
+	ACCOUNT_BALANCE string = "/deepcoin/v2/account/balances"
+	ACCOUNT_UID     string = "/deepcoin/v2/account/uid"
+	ACCOUNT_BILLS   string = "/deepcoin/v2/account/bills"
+	SET_LEVERAGE    string = "/deepcoin/v2/account/set-leverage"
+	POSITIONS       string = "/deepcoin/v2/account/positions"
+
+	MARKET_CANDLES     string = "/deepcoin/v2/market/candles"
+	MARKET_TICKERS     string = "/deepcoin/v2/market/tickers"
+	MARKET_INSTRUMENTS string = "/deepcoin/v2/market/instruments"
+
+	TRADE_ORDER              string = "/deepcoin/v2/trade/order"
+	TRADE_CANCEL_ORDER       string = "/deepcoin/v2/trade/cancel-order"
+	TRADE_FILLS              string = "/deepcoin/v2/trade/fills"
+	TRADE_HISTORY_ORDER      string = "/deepcoin/v2/trade/orders-history"
+	TRADE_PENDING_ORDER      string = "/deepcoin/v2/trade/orders-pending"
+	TRADE_POSITION           string = "/deepcoin/v2/account/positions"
+	TRADE_ORDER_BY_ID        string = "/deepcoin/v2/trade/orderByID"
+	TRADE_FINISH_ORDER_BY_ID string = "/deepcoin/v2/trade/finishOrderByID"
+	TRADE_FUNDING_RATE       string = "/deepcoin/v2/trade/funding-rate"
+	TRADE_REPLACE_ORDER      string = "/deepcoin/v2/trade/replace-order"
+	TRADE_BATCH_CANCEL_ORDER string = "/deepcoin/v2/trade/batch-cancel-order"
+	TRADE_PENDING_ORDER_V2   string = "/deepcoin/v2/trade/v2/orders-pending"
+	TRADE_SWAP_CANCEL_ALL    string = "/deepcoin/v2/trade/swap/cancel-all"
+	TRADE_REPLACE_ORDER_SLTP string = "/deepcoin/v2/trade/replace-order-sltp"
+	TRADE_REPLACE_POS_SLTP   string = "/deepcoin/v2/trade/replace-pos-sltp"
+
+	COPYTRADING_LEADER_SETTINGS  string = "/deepcoin/v2/copytrading/leader-settings"
+	COPYTRADING_SUPPORT_CONTRACT string = "/deepcoin/v2/copytrading/support-contracts"
+	COPYTRADING_SET_CONTRACT     string = "/deepcoin/v2/copytrading/set-contracts"
+	COPYTRADING_LEADER_POSITION  string = "/deepcoin/v2/copytrading/leader-position"
+	COPYTRADING_ESTIMATE_PROFIT  string = "/deepcoin/v2/copytrading/estimate-profit"
+	COPYTRADING_HISTORY_PROFIT   string = "/deepcoin/v2/copytrading/history-profit"
+	COPYTRADING_FOLLOWER_RANK    string = "/deepcoin/v2/copytrading/follower-rank"
+	COPYTRADING_GET_ACCOUNTID    string = "/deepcoin/v2/copytrading/get-accountIDs"
+
+	ASSET_DEPOSIT_LIST  = "/deepcoin/v2/asset/deposit-list"
+	ASSET_WITHDARW_LIST = "/deepcoin/v2/asset/withdraw-list"
+
+	ListenKey       string = "/deepcoin/v2/listenkey/acquire"
+	ExtendListenKey string = "/deepcoin/v2/listenkey/extend"
+
+	INTERNAL_TRANSFER_SUPPORT string = "/deepcoin/v2/internal-transfer/support"
+	INTERNAL_TRANSFER         string = "/deepcoin/v2/internal-transfer"
+	INTERNAL_TRANSFER_HISTORY string = "/deepcoin/v2/internal-transfer/history-order"
+)
