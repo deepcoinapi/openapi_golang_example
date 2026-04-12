@@ -18,20 +18,14 @@ func NewMarketCtrl(env *structs.Env) *MarketCtrl {
 }
 
 func (m *MarketCtrl) GetMarketBooks() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_BOOKS+"?instId=%s", "BTC-USDT")
-	requestPath := fmt.Sprintf(consts.MARKET_BOOKS+"?instId=%s", "BTC-USDT")
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_BOOKS+"?instId=%s&sz=200", "BTC-USDT-SWAP")
+	requestPath := fmt.Sprintf(consts.MARKET_BOOKS+"?instId=%s&sz=200", "BTC-USDT-SWAP")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 
 func (m *MarketCtrl) GetMarketCandles() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_CANDLES+"?instId=%s", "BTC-USDT")
-	requestPath := fmt.Sprintf(consts.MARKET_CANDLES+"?instId=%s", "BTC-USDT")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
-}
-
-func (m *MarketCtrl) GetMarketTickers() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_TICKERS+"?instType=%s&uly=%s", consts.SPOT, "SAGE-USDT")
-	requestPath := fmt.Sprintf(consts.MARKET_TICKERS+"?instType=%s&uly=%s", consts.SPOT, "SAGE-USDT")
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_CANDLES+"?instId=%s&bar=4H&startTime=%d&endTime=%d&limit=%d", "BTC-USDT-SWAP", 1775793600000, 1775866400000, 2)
+	requestPath := fmt.Sprintf(consts.MARKET_CANDLES+"?instId=%s&bar=4H&startTime=%d&endTime=%d&limit=%d", "BTC-USDT-SWAP", 1775793600000, 1775866400000, 2)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 
@@ -41,10 +35,23 @@ func (m *MarketCtrl) GetMarketInstruments() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 
+func (m *MarketCtrl) GetMarketTickers() {
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_TICKERS+"?instType=%s&uly=%s", consts.SPOT, "SAGE-USDT")
+	requestPath := fmt.Sprintf(consts.MARKET_TICKERS+"?instType=%s&uly=%s", consts.SPOT, "SAGE-USDT")
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
+}
+
 // GetMarketIndexCandles 指数K线
 func (m *MarketCtrl) GetMarketIndexCandles() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=%s", "BTC-USDT", "1m")
-	requestPath := fmt.Sprintf(consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=%s", "BTC-USDT", "1m")
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=4H&startTime=%d&endTime=%d&limit=%d", "BTC-USDT-SWAP", 1775793600000, 1775866400000, 2)
+	requestPath := fmt.Sprintf(consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=4H&startTime=%d&endTime=%d&limit=%d", "BTC-USDT-SWAP", 1775793600000, 1775866400000, 2)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
+}
+
+// GetMarketTrades 成交记录
+func (m *MarketCtrl) GetMarketTrades() {
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_TRADES+"?instId=%s&limit=%d", "BTC-USDT-SWAP", 100)
+	requestPath := fmt.Sprintf(consts.MARKET_TRADES+"?instId=%s&limit=%d", "BTC-USDT-SWAP", 100)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 
@@ -59,13 +66,6 @@ func (m *MarketCtrl) GetMarketMarkCandles() {
 func (m *MarketCtrl) GetMarketPositionGrade() {
 	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_POSITION_GRADE+"?instId=%s", "BTC-USDT-SWAP")
 	requestPath := fmt.Sprintf(consts.MARKET_POSITION_GRADE+"?instId=%s", "BTC-USDT-SWAP")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
-}
-
-// GetMarketTrades 成交记录
-func (m *MarketCtrl) GetMarketTrades() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_TRADES+"?instId=%s&limit=%d", "BTC-USDT-SWAP", 100)
-	requestPath := fmt.Sprintf(consts.MARKET_TRADES+"?instId=%s&limit=%d", "BTC-USDT-SWAP", 100)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 

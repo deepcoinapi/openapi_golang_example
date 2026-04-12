@@ -67,23 +67,23 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"getPositions":      account.GetPositions,      //✅
 
 			// market
-			"getMarketBooks":              market.GetMarketBooks,
-			"getMarketCandles":            market.GetMarketCandles,
-			"getMarketTickers":            market.GetMarketTickers,
-			"getMarketInstruments":        market.GetMarketInstruments,
-			"getMarketIndexCandles":       market.GetMarketIndexCandles,
-			"getMarketMarkCandles":        market.GetMarketMarkCandles,
-			"getMarketPositionGrade":      market.GetMarketPositionGrade,
-			"getMarketTrades":             market.GetMarketTrades,
-			"getMarketSysTime":            market.GetMarketSysTime,
-			"getMarketSysPing":            market.GetMarketSysPing,
-			"getMarketBookSpread":         market.GetMarketBookSpread,
-			"getMarketHandicapKline1m":    market.GetMarketHandicapKline1m,
-			"getMarketHandicapOrderbook":  market.GetMarketHandicapOrderbook,
-			"getMarketHandicapTrade":      market.GetMarketHandicapTrade,
+			"getMarketBooks":              market.GetMarketBooks,             //✅
+			"getMarketCandles":            market.GetMarketCandles,           //✅
+			"getMarketInstruments":        market.GetMarketInstruments,       //✅
+			"getMarketTickers":            market.GetMarketTickers,           //✅
+			"getMarketIndexCandles":       market.GetMarketIndexCandles,      //✅
+			"getMarketTrades":             market.GetMarketTrades,            //✅
+			"getMarketMarkCandles":        market.GetMarketMarkCandles,       //✅
+			"getMarketPositionGrade":      market.GetMarketPositionGrade,     //✅
+			"getMarketBookSpread":         market.GetMarketBookSpread,        //✅
+			"getMarketSysTime":            market.GetMarketSysTime,           //✅
+			"getMarketHandicapKline1m":    market.GetMarketHandicapKline1m,   //✅
+			"getMarketHandicapOrderbook":  market.GetMarketHandicapOrderbook, //✅
+			"getMarketHandicapTrade":      market.GetMarketHandicapTrade,     //✅
 			"getMarketFundingRate":        market.GetMarketFundingRate,
 			"getMarketCurrentFundingRate": market.GetMarketCurrentFundingRate,
 			"getMarketFundingRateHistory": market.GetMarketFundingRateHistory,
+			"getMarketSysPing":            market.GetMarketSysPing,
 
 			// trade
 			"order":                            trade.Order,
