@@ -106,6 +106,22 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"swapReplaceOrderSlTp":             trade.SwapReplaceOrderSlTp,
 			"swapReplacePositionSlTp":          trade.SwapReplacePositionSlTp,
 
+			// V2 交易接口
+			"batchOrders":           trade.BatchOrders,
+			"triggerOrder":          trade.TriggerOrder,
+			"cancelTriggerOrder":    trade.CancelTriggerOrder,
+			"batchCancelOrderV2":    trade.BatchCancelOrderV2,
+			"replaceOrderV2":        trade.ReplaceOrderV2,
+			"replaceOrderSLTPV2":    trade.ReplaceOrderSLTPV2,
+			"setPositionSLTP":       trade.SetPositionSLTP,
+			"cancelPositionSLTP":    trade.CancelPositionSLTP,
+			"modifyPositionSLTP":    trade.ModifyPositionSLTP,
+			"cancelOrderAll":        trade.CancelOrderAll,
+			"cancelTriggerOrderAll": trade.CancelTriggerOrderAll,
+			"batchClosePosition":    trade.BatchClosePosition,
+			"closePositionByIds":    trade.ClosePositionByIds,
+			"orderList":             trade.OrderList,
+
 			// copytrading
 			"leader-settings":   copytrading.LeaderSettings,
 			"support-contracts": copytrading.SupportContracts,
