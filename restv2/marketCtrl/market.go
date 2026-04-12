@@ -17,6 +17,12 @@ func NewMarketCtrl(env *structs.Env) *MarketCtrl {
 	}
 }
 
+func (m *MarketCtrl) GetMarketBooks() {
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_BOOKS+"?instId=%s", "BTC-USDT")
+	requestPath := fmt.Sprintf(consts.MARKET_BOOKS+"?instId=%s", "BTC-USDT")
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
+}
+
 func (m *MarketCtrl) GetMarketCandles() {
 	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_CANDLES+"?instId=%s", "BTC-USDT")
 	requestPath := fmt.Sprintf(consts.MARKET_CANDLES+"?instId=%s", "BTC-USDT")

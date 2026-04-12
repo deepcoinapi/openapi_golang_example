@@ -31,6 +31,7 @@ const (
 	SET_LEVERAGE    string = "/deepcoin/v2/account/set-leverage"
 	POSITIONS       string = "/deepcoin/v2/account/positions"
 
+	MARKET_BOOKS       string = "/deepcoin/v2/market/books"
 	MARKET_CANDLES     string = "/deepcoin/v2/market/candles"
 	MARKET_TICKERS     string = "/deepcoin/v2/market/tickers"
 	MARKET_INSTRUMENTS string = "/deepcoin/v2/market/instruments"

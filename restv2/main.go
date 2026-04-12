@@ -67,6 +67,7 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"getPositions":      account.GetPositions,      //✅
 
 			// market
+			"getMarketBooks":       market.GetMarketBooks,
 			"getMarketCandles":     market.GetMarketCandles,
 			"getMarketTickers":     market.GetMarketTickers,
 			"getMarketInstruments": market.GetMarketInstruments,
