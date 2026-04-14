@@ -67,62 +67,55 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"getPositions":      account.GetPositions,      //✅
 
 			// market
-			"getMarketBooks":              market.GetMarketBooks,             //✅
-			"getMarketCandles":            market.GetMarketCandles,           //✅
-			"getMarketInstruments":        market.GetMarketInstruments,       //✅
-			"getMarketTickers":            market.GetMarketTickers,           //✅
-			"getMarketIndexCandles":       market.GetMarketIndexCandles,      //✅
-			"getMarketTrades":             market.GetMarketTrades,            //✅
-			"getMarketMarkCandles":        market.GetMarketMarkCandles,       //✅
-			"getMarketPositionGrade":      market.GetMarketPositionGrade,     //✅
-			"getMarketBookSpread":         market.GetMarketBookSpread,        //✅
-			"getMarketSysTime":            market.GetMarketSysTime,           //✅
-			"getMarketHandicapKline1m":    market.GetMarketHandicapKline1m,   //✅
-			"getMarketHandicapOrderbook":  market.GetMarketHandicapOrderbook, //✅
-			"getMarketHandicapTrade":      market.GetMarketHandicapTrade,     //✅
-			"getMarketFundingRate":        market.GetMarketFundingRate,
-			"getMarketCurrentFundingRate": market.GetMarketCurrentFundingRate,
-			"getMarketFundingRateHistory": market.GetMarketFundingRateHistory,
+			"getMarketBooks":              market.GetMarketBooks,              //✅
+			"getMarketCandles":            market.GetMarketCandles,            //✅
+			"getMarketInstruments":        market.GetMarketInstruments,        //✅
+			"getMarketTickers":            market.GetMarketTickers,            //✅
+			"getMarketIndexCandles":       market.GetMarketIndexCandles,       //✅
+			"getMarketTrades":             market.GetMarketTrades,             //✅
+			"getMarketMarkCandles":        market.GetMarketMarkCandles,        //✅
+			"getMarketPositionGrade":      market.GetMarketPositionGrade,      //✅
+			"getMarketBookSpread":         market.GetMarketBookSpread,         //✅
+			"getMarketSysTime":            market.GetMarketSysTime,            //✅
+			"getMarketHandicapKline1m":    market.GetMarketHandicapKline1m,    //✅
+			"getMarketHandicapOrderbook":  market.GetMarketHandicapOrderbook,  //✅
+			"getMarketHandicapTrade":      market.GetMarketHandicapTrade,      //✅
+			"getMarketFundingRate":        market.GetMarketFundingRate,        //✅
+			"getMarketCurrentFundingRate": market.GetMarketCurrentFundingRate, //✅
+			"getMarketFundingRateHistory": market.GetMarketFundingRateHistory, //✅
 			"getMarketSysPing":            market.GetMarketSysPing,
 
 			// trade
-			"order":                  trade.Order,
-			"batchOrders":            trade.BatchOrders,
-			"replace-order":          trade.ReplaceOrder,
-			"cancelOrder":            trade.CancelOrder,
-			"batch-cancel-order":     trade.BatchCancelOrder,
-			"cancelTriggerOrder":     trade.CancelTriggerOrder,
-			"cancelOrderAll":         trade.CancelOrderAll,
-			"cancelTriggerOrderAll":  trade.CancelTriggerOrderAll,
-			"tradeFills":             trade.TradeFills,
-			"queryOrderByOrderSysID": trade.QueryOrderByOrderSysID,
+			"order":                        trade.Order,                        //✅
+			"batchOrders":                  trade.BatchOrders,                  //✅
+			"replace-order":                trade.ReplaceOrder,                 //✅
+			"cancelOrder":                  trade.CancelOrder,                  //✅
+			"batch-cancel-order":           trade.BatchCancelOrder,             //✅
+			"cancelTriggerOrder":           trade.CancelTriggerOrder,           //✅
+			"cancelOrderAll":               trade.CancelOrderAll,               //✅
+			"cancelTriggerOrderAll":        trade.CancelTriggerOrderAll,        //✅
+			"tradeFills":                   trade.TradeFills,                   //✅
+			"queryOrderByOrderSysID":       trade.QueryOrderByOrderSysID,       //✅
+			"batchOrderQuery":              trade.BatchOrderQuery,              //✅
+			"finishQueryOrderByOrderSysID": trade.FinishQueryOrderByOrderSysID, //✅
+			"historyOrder":                 trade.HistoryOrder,                 //✅
+			"pendingOrder":                 trade.PendingOrder,                 //✅
+			"triggerOrder":                 trade.TriggerOrder,                 //✅
+			"batchClosePosition":           trade.BatchClosePosition,           //✅
+			"replaceOrderSlTp":             trade.ReplaceOrderSlTp,             //✅
+			"closePositionByIds":           trade.ClosePositionByIds,           //✅
+			"setPositionSLTP":              trade.SetPositionSLTP,              //✅
+			"cancelPositionSLTP":           trade.CancelPositionSLTP,           //✅
+			"modifyPositionSLTP":           trade.ModifyPositionSLTP,           //✅
 
-			"historyOrder":     trade.HistoryOrder,
-			"spotHistoryOrder": trade.SpotHistoryOrder,
-			"pendingOrder":     trade.PendingOrder,
-			"spotPendingOrder": trade.SpotPendingOrder,
+			"swapQueryPendingOrders": trade.SwapQueryPendingOrders,
+			"swapCalcelAllOrders":    trade.SwapCalcelAllOrders,
 
-			"swapFinishQueryOrderByOrderSysID": trade.SwapFinishQueryOrderByOrderSysID,
-			"spotFinishQueryOrderByOrderSysID": trade.SpotFinishQueryOrderByOrderSysID,
-			"getPosition":                      trade.GetPosition,
-			"getFundingRate":                   trade.GetFundingRate,
-
-			"swapQueryPendingOrders":  trade.SwapQueryPendingOrders,
-			"swapCalcelAllOrders":     trade.SwapCalcelAllOrders,
-			"swapReplaceOrderSlTp":    trade.SwapReplaceOrderSlTp,
 			"swapReplacePositionSlTp": trade.SwapReplacePositionSlTp,
 
 			// V2 交易接口
-			"triggerOrder": trade.TriggerOrder,
 
-			"replaceOrderSLTPV2": trade.ReplaceOrderSLTPV2,
-			"setPositionSLTP":    trade.SetPositionSLTP,
-			"cancelPositionSLTP": trade.CancelPositionSLTP,
-			"modifyPositionSLTP": trade.ModifyPositionSLTP,
-
-			"batchClosePosition": trade.BatchClosePosition,
-			"closePositionByIds": trade.ClosePositionByIds,
-			"orderList":          trade.OrderList,
+			"orderList": trade.OrderList,
 
 			// copytrading
 			"leader-settings":   copytrading.LeaderSettings,

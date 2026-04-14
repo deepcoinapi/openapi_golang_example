@@ -88,32 +88,14 @@ func (t *TradeCtrl) TradeFills() {
 }
 
 func (t *TradeCtrl) HistoryOrder() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_HISTORY_ORDER+"?instType=%s&ordType=market", consts.SWAP)
-	requestPath := fmt.Sprintf(consts.TRADE_HISTORY_ORDER+"?instType=%s&ordType=market", consts.SWAP)
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) SpotHistoryOrder() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_HISTORY_ORDER+"?instType=%s&ordId=%s", consts.SPOT, "1000750232272249")
-	requestPath := fmt.Sprintf(consts.TRADE_HISTORY_ORDER+"?instType=%s&ordId=%s", consts.SPOT, "1000750232272249")
+	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_HISTORY_ORDER+"?instType=%s", consts.SWAP)
+	requestPath := fmt.Sprintf(consts.TRADE_HISTORY_ORDER+"?instType=%s", consts.SWAP)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
 
 func (t *TradeCtrl) PendingOrder() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_PENDING_ORDER+"?instType=%s&ordId=%s", consts.SWAP, "1000187178097137")
-	requestPath := fmt.Sprintf(consts.TRADE_PENDING_ORDER+"?instType=%s&ordId=%s", consts.SWAP, "1000187178097137")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) SpotPendingOrder() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_PENDING_ORDER+"?instType=%s", consts.SPOT)
-	requestPath := fmt.Sprintf(consts.TRADE_PENDING_ORDER+"?instType=%s", consts.SPOT)
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) GetPosition() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_POSITION+"?instType=%s&posId=%s", consts.SWAP, "1000439562104988")
-	requestPath := fmt.Sprintf(consts.TRADE_POSITION+"?instType=%s&posId=%s", consts.SWAP, "1000439562104988")
+	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_PENDING_ORDER+"?page=%v", 1)
+	requestPath := fmt.Sprintf(consts.TRADE_PENDING_ORDER+"?page=%v", 1)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
 
@@ -123,21 +105,9 @@ func (t *TradeCtrl) QueryOrderByOrderSysID() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
 
-func (t *TradeCtrl) SwapFinishQueryOrderByOrderSysID() {
+func (t *TradeCtrl) FinishQueryOrderByOrderSysID() {
 	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_FINISH_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT-SWAP", "1000587866272245")
 	requestPath := fmt.Sprintf(consts.TRADE_FINISH_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT-SWAP", "1000587866272245")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) SpotFinishQueryOrderByOrderSysID() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_FINISH_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT", "1000188021378725")
-	requestPath := fmt.Sprintf(consts.TRADE_FINISH_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT", "1000188021378725")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) GetFundingRate() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_FUNDING_RATE+"?instType=%s", "SwapU")
-	requestPath := fmt.Sprintf(consts.TRADE_FUNDING_RATE+"?instType=%s", "SwapU")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
 
@@ -216,12 +186,11 @@ func (t *TradeCtrl) SwapCalcelAllOrders() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_SWAP_CANCEL_ALL, string(requestBody), &t.env)
 }
 
-func (t *TradeCtrl) SwapReplaceOrderSlTp() {
+func (t *TradeCtrl) ReplaceOrderSlTp() {
 	type replaceOrderRequest struct {
-		OrderSysID   string  `json:"orderSysID"`
-		ProductGroup string  `json:"productGroup"`
-		TpTriggerPx  float64 `json:"tpTriggerPx"`
-		SlTriggerPx  float64 `json:"slTriggerPx"`
+		OrderSysID  string  `json:"ordId"`
+		TpTriggerPx float64 `json:"tpTriggerPx"`
+		SlTriggerPx float64 `json:"slTriggerPx"`
 	}
 
 	replaceOrder := &replaceOrderRequest{}
@@ -377,30 +346,6 @@ func (t *TradeCtrl) CancelTriggerOrder() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_CANCEL_TRIGGER_ORDER, string(requestBody), &t.env)
 }
 
-// ReplaceOrderSLTPV2 修改订单止盈止损
-func (t *TradeCtrl) ReplaceOrderSLTPV2() {
-	type replaceSLTPRequest struct {
-		OrdId       string  `json:"ordId,omitempty"`
-		TPTriggerPx float64 `json:"tpTriggerPx,omitempty"`
-		SLTriggerPx float64 `json:"slTriggerPx,omitempty"`
-	}
-
-	req := &replaceSLTPRequest{
-		OrdId:       "1000587866272245",
-		TPTriggerPx: 170000,
-		SLTriggerPx: 130000,
-	}
-
-	requestBody, err := json.Marshal(req)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	requestURL := t.env.Url + consts.TRADE_REPLACE_ORDER_SLTP
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_REPLACE_ORDER_SLTP, string(requestBody), &t.env)
-}
-
 // SetPositionSLTP 设置持仓止盈止损
 func (t *TradeCtrl) SetPositionSLTP() {
 	type setPositionSLTPRequest struct {
@@ -434,17 +379,13 @@ func (t *TradeCtrl) SetPositionSLTP() {
 // CancelPositionSLTP 取消持仓止盈止损
 func (t *TradeCtrl) CancelPositionSLTP() {
 	type cancelPositionSLTPRequest struct {
-		InstId      string `json:"instId,omitempty"`
-		PosSide     string `json:"posSide,omitempty"`
-		MrgPosition string `json:"mrgPosition,omitempty"`
-		TdMode      string `json:"tdMode,omitempty"`
+		InstId string `json:"instId,omitempty"`
+		OrdId  string `json:"ordId,omitempty"`
 	}
 
 	req := &cancelPositionSLTPRequest{
-		InstId:      "BTC-USDT-SWAP",
-		PosSide:     consts.POSITION_SIDE_LONG,
-		MrgPosition: consts.MERGE,
-		TdMode:      consts.CROSS,
+		InstId: "BTC-USDT-SWAP",
+		OrdId:  "1000587866272245",
 	}
 
 	requestBody, err := json.Marshal(req)
@@ -461,6 +402,7 @@ func (t *TradeCtrl) CancelPositionSLTP() {
 func (t *TradeCtrl) ModifyPositionSLTP() {
 	type modifyPositionSLTPRequest struct {
 		InstId      string  `json:"instId,omitempty"`
+		OrdId       string  `json:"ordId,omitempty"`
 		PosSide     string  `json:"posSide,omitempty"`
 		MrgPosition string  `json:"mrgPosition,omitempty"`
 		TdMode      string  `json:"tdMode,omitempty"`
@@ -470,6 +412,7 @@ func (t *TradeCtrl) ModifyPositionSLTP() {
 
 	req := &modifyPositionSLTPRequest{
 		InstId:      "BTC-USDT-SWAP",
+		OrdId:       "1000587866272245",
 		PosSide:     consts.POSITION_SIDE_LONG,
 		MrgPosition: consts.MERGE,
 		TdMode:      consts.CROSS,
@@ -559,7 +502,7 @@ func (t *TradeCtrl) BatchClosePosition() {
 func (t *TradeCtrl) ClosePositionByIds() {
 	type closePositionByIdsRequest struct {
 		InstId      string   `json:"instId,omitempty"`
-		PositionIds []string `json:"positionIds,omitempty"`
+		PositionIds []string `json:"posIds,omitempty"`
 	}
 
 	req := &closePositionByIdsRequest{
@@ -582,4 +525,39 @@ func (t *TradeCtrl) OrderList() {
 	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_ORDER_LIST+"?instId=%s&ordType=%s", "BTC-USDT-SWAP", "limit")
 	requestPath := fmt.Sprintf(consts.TRADE_ORDER_LIST+"?instId=%s&ordType=%s", "BTC-USDT-SWAP", "limit")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
+}
+
+// BatchOrderQuery 批量查询订单
+func (t *TradeCtrl) BatchOrderQuery() {
+	type orderQueryItem struct {
+		InstId  string `json:"instId,omitempty"`
+		OrdId   string `json:"ordId,omitempty"`
+		ClOrdId string `json:"clOrdId,omitempty"`
+	}
+
+	type batchOrderQueryRequest struct {
+		Orders []orderQueryItem `json:"orders"`
+	}
+
+	req := &batchOrderQueryRequest{
+		Orders: []orderQueryItem{
+			{
+				InstId: "BTC-USDT-SWAP",
+				OrdId:  "1000597586292096",
+			},
+			{
+				InstId: "ETH-USDT-SWAP",
+				OrdId:  "1000597586292104",
+			},
+		},
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := t.env.Url + consts.TRADE_BATCH_ORDER_QUERY
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_BATCH_ORDER_QUERY, string(requestBody), &t.env)
 }
