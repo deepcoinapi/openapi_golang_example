@@ -545,3 +545,236 @@ func (t *TradeCtrl) TraceOrderList() {
 	requestPath := fmt.Sprintf(consts.TRADE_TRACE_ORDER_LIST+"?instId=%s", "BTC-USDT-SWAP")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
+
+// DSLTriggerOrder DSL 触发单
+func (t *TradeCtrl) DSLTriggerOrder() {
+	// 构造交易信息
+	tradeInfo := map[string]interface{}{
+		"instid":      "BTC-USDT-SWAP",
+		"lever":       20,
+		"tradeMode":   "1",
+		"mrgPosition": "merge",
+	}
+
+	// 构造市场信息
+	market := map[string]interface{}{
+		"instid":  "BTC-USDT",
+		"trigger": "on_bar_close",
+	}
+
+	// 构造指标配置
+	indicators := []map[string]interface{}{
+		{
+			"name": "boll",
+			"type": "BOLL",
+			"params": map[string]interface{}{
+				"interval": "1m",
+				"period":   20,
+				"std":      2,
+			},
+			"condition": map[string]interface{}{
+				"ref":   "boll.lower",
+				"op":    "<",
+				"right": 45000.0,
+			},
+			"scope": "entry",
+		},
+		{
+			"name": "kdj",
+			"type": "KDJ",
+			"params": map[string]interface{}{
+				"interval":    "1m",
+				"n":           9,
+				"k_smoothing": 3,
+				"d_smoothing": 3,
+			},
+			"condition": map[string]interface{}{
+				"ref":   "kdj.k",
+				"op":    ">",
+				"right": 30.0,
+			},
+			"scope": "entry",
+		},
+	}
+
+	// 构造执行动作
+	entryAction := map[string]interface{}{
+		"action": "open",
+		"side":   "long",
+		"volume": 100,
+	}
+
+	exitAction := map[string]interface{}{
+		"action": "close",
+		"side":   "long",
+		"volume": 100,
+	}
+
+	onTrue := map[string]interface{}{
+		"on_true":  entryAction,
+		"on_false": exitAction,
+	}
+
+	then := map[string]interface{}{
+		"entry": onTrue,
+		"exit":  onTrue,
+	}
+
+	// 构造风险控制
+	risk := map[string]interface{}{
+		"stop_loss": map[string]interface{}{
+			"enabled": true,
+			"type":    "percentage",
+			"value":   0.1,
+			"basis":   "entry_price",
+			"trigger": "price",
+		},
+		"take_profit": map[string]interface{}{
+			"enabled": true,
+			"type":    "percentage",
+			"value":   0.5,
+			"basis":   "entry_price",
+			"trigger": "price",
+		},
+	}
+
+	// 构造 DSL 策略 JSON
+	dslJson := map[string]interface{}{
+		"version":    "1.0",
+		"market":     market,
+		"indicators": indicators,
+		"then":       then,
+		"risk":       risk,
+	}
+
+	// 构造完整请求
+	req := map[string]interface{}{
+		"trade_info": tradeInfo,
+		"dsl_json":   dslJson,
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := t.env.Url + consts.TRADE_DSL_TRIGGER_ORDER
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_DSL_TRIGGER_ORDER, string(requestBody), &t.env)
+}
+
+// BacktestRun 运行回测
+func (t *TradeCtrl) BacktestRun() {
+	// 构造市场信息
+	market := map[string]interface{}{
+		"instid":  "BTC-USDT-SWAP",
+		"trigger": "on_bar_close",
+	}
+
+	// 构造指标配置
+	indicators := []map[string]interface{}{
+		{
+			"name": "boll",
+			"type": "BOLL",
+			"params": map[string]interface{}{
+				"interval": "1m",
+				"period":   20,
+				"std":      2,
+			},
+			"condition": map[string]interface{}{
+				"ref":   "boll.lower",
+				"op":    "<",
+				"right": 45000.0,
+			},
+			"scope": "entry",
+		},
+		{
+			"name": "kdj",
+			"type": "KDJ",
+			"params": map[string]interface{}{
+				"interval":    "1m",
+				"n":           9,
+				"k_smoothing": 3,
+				"d_smoothing": 3,
+			},
+			"condition": map[string]interface{}{
+				"ref":   "kdj.k",
+				"op":    ">",
+				"right": 30.0,
+			},
+			"scope": "entry",
+		},
+	}
+
+	// 构造执行动作
+	entryAction := map[string]interface{}{
+		"action": "open",
+		"side":   "long",
+		"volume": 100,
+	}
+
+	exitAction := map[string]interface{}{
+		"action": "close",
+		"side":   "long",
+		"volume": 100,
+	}
+
+	onTrue := map[string]interface{}{
+		"on_true":  entryAction,
+		"on_false": exitAction,
+	}
+
+	then := map[string]interface{}{
+		"entry": onTrue,
+		"exit":  onTrue,
+	}
+
+	// 构造风险控制
+	risk := map[string]interface{}{
+		"stop_loss": map[string]interface{}{
+			"enabled": true,
+			"type":    "percentage",
+			"value":   0.1,
+			"basis":   "entry_price",
+			"trigger": "price",
+		},
+		"take_profit": map[string]interface{}{
+			"enabled": true,
+			"type":    "percentage",
+			"value":   0.5,
+			"basis":   "entry_price",
+			"trigger": "price",
+		},
+	}
+
+	// 构造 DSL 策略配置
+	dsl := map[string]interface{}{
+		"version":    "1.0",
+		"market":     market,
+		"indicators": indicators,
+		"then":       then,
+		"risk":       risk,
+	}
+
+	// 构造数据源配置
+	dataSource := map[string]interface{}{
+		"instid":  "BTC-USDT-SWAP",
+		"from_ts": 1770652800, // 2024-01-01 00:00:00 UTC
+		"to_ts":   1773072000, // 2024-02-01 00:00:00 UTC
+	}
+
+	// 构造完整请求
+	req := map[string]interface{}{
+		"dsl":         dsl,
+		"data_source": dataSource,
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := t.env.Url + consts.TRADE_BACKTEST_RUN
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_BACKTEST_RUN, string(requestBody), &t.env)
+}

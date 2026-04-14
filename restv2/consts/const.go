@@ -69,6 +69,8 @@ const (
 	TRADE_TRIGGER_ORDERS_HISTORY string = "/deepcoin/v2/trade/trigger-orders-history"
 	TRADE_TRACE_ORDER            string = "/deepcoin/v2/trade/trace-order"
 	TRADE_TRACE_ORDER_LIST       string = "/deepcoin/v2/trade/trace-order-list"
+	TRADE_DSL_TRIGGER_ORDER      string = "/deepcoin/v2/trade/dsl-trigger-order"
+	TRADE_BACKTEST_RUN           string = "/deepcoin/v2/trade/backtest-run"
 	TRADE_FILLS                  string = "/deepcoin/v2/trade/fills"
 	TRADE_HISTORY_ORDER          string = "/deepcoin/v2/trade/orders-history"
 	TRADE_PENDING_ORDER          string = "/deepcoin/v2/trade/orders-pending"

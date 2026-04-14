@@ -140,11 +140,15 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"subAccountList":           asset.SubAccountList,           //✅
 
 			//rebate
-			"rebateConfig":     rebate.RebateConfig,
-			"setRebateConfig":  rebate.SetRebateConfig,
-			"agentsUsers":      rebate.AgentsUsers,
-			"agentsRebateList": rebate.AgentsRebateList,
-			"agentsRebates":    rebate.AgentsRebates,
+			"rebateConfig":     rebate.RebateConfig,     //✅
+			"setRebateConfig":  rebate.SetRebateConfig,  //✅
+			"agentsUsers":      rebate.AgentsUsers,      //✅
+			"agentsRebateList": rebate.AgentsRebateList, //✅
+			"agentsRebates":    rebate.AgentsRebates,    //✅
+
+			// dsl
+			"dslTriggerOrder": trade.DSLTriggerOrder, //✅
+			"backtestRun":     trade.BacktestRun,     //✅
 
 			// asset
 			"depositList":  asset.GetDepositList,
