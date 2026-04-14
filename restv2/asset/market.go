@@ -95,3 +95,17 @@ func (a *AssetCtrl) SubAccountTransfer() {
 	requestURL := a.env.Url + consts.SUB_ACCOUNT_TRANSFER
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.SUB_ACCOUNT_TRANSFER, string(requestBody), &a.env)
 }
+
+// SubAccountTransferRecord 子母账号划转记录
+func (a *AssetCtrl) SubAccountTransferRecord() {
+	requestURL := fmt.Sprintf(a.env.Url+consts.SUB_ACCOUNT_TRANSFER_RECORD+"?coin=%s&fromId=%s&toId=%s&relationType=%s&page=%d&size=%d", "USDT", "7", "7", "1", 1, 20)
+	requestPath := fmt.Sprintf(consts.SUB_ACCOUNT_TRANSFER_RECORD+"?coin=%s&fromId=%s&toId=%s&relationType=%s&page=%d&size=%d", "USDT", "7", "7", "1", 1, 20)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &a.env)
+}
+
+// SubAccountList 查询子账号列表
+func (a *AssetCtrl) SubAccountList() {
+	requestURL := fmt.Sprintf(a.env.Url + consts.SUB_ACCOUNT_LIST)
+	requestPath := fmt.Sprintf(consts.SUB_ACCOUNT_LIST)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &a.env)
+}

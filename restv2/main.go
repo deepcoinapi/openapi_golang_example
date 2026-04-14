@@ -133,7 +133,9 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"getInternalTransferHistory": asset.GetInternalTransferHistory, //✅
 
 			// subAccount
-			"subAccountTransfer": asset.SubAccountTransfer, //✅
+			"subAccountTransfer":       asset.SubAccountTransfer,       //✅
+			"subAccountTransferRecord": asset.SubAccountTransferRecord, //✅
+			"subAccountList":           asset.SubAccountList,           //✅
 
 			// asset
 			"depositList":  asset.GetDepositList,
