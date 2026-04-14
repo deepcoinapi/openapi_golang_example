@@ -6,6 +6,7 @@ import (
 	"apiRequest/consts"
 	"apiRequest/copytrading"
 	"apiRequest/marketCtrl"
+	"apiRequest/rebate"
 	"apiRequest/structs"
 	"apiRequest/tradeCtrl"
 	"apiRequest/ws"
@@ -56,6 +57,7 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 	ws := ws.NewPrivateWsCtrl(env)
 	copytrading := copytrading.NewCopyTradingCtrl(env)
 	asset := assetCtrl.NewAssetCtrl(env)
+	rebate := rebate.NewRebateCtrl(env)
 
 	return &CommandRegistry{
 		handlers: map[string]CommandHandler{
@@ -136,6 +138,13 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"subAccountTransfer":       asset.SubAccountTransfer,       //✅
 			"subAccountTransferRecord": asset.SubAccountTransferRecord, //✅
 			"subAccountList":           asset.SubAccountList,           //✅
+
+			//rebate
+			"rebateConfig":     rebate.RebateConfig,
+			"setRebateConfig":  rebate.SetRebateConfig,
+			"agentsUsers":      rebate.AgentsUsers,
+			"agentsRebateList": rebate.AgentsRebateList,
+			"agentsRebates":    rebate.AgentsRebates,
 
 			// asset
 			"depositList":  asset.GetDepositList,

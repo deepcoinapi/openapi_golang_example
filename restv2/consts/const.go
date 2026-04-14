@@ -97,4 +97,9 @@ const (
 	SUB_ACCOUNT_TRANSFER        string = "/deepcoin/v2/sub-account/sub-account-transfer"
 	SUB_ACCOUNT_TRANSFER_RECORD string = "/deepcoin/v2/sub-account/sub-account-transfer-record"
 	SUB_ACCOUNT_LIST            string = "/deepcoin/v2/sub-account/sub-account-list"
+
+	REBATE_CONFIG      string = "/deepcoin/v2/rebate/config"
+	AGENTS_USERS       string = "/deepcoin/v2/agents/users"
+	AGENTS_REBATE_LIST string = "/deepcoin/v2/agents/users/rebate-list"
+	AGENTS_REBATES     string = "/deepcoin/v2/agents/users/rebates"
 )
