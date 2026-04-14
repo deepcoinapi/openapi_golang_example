@@ -561,3 +561,17 @@ func (t *TradeCtrl) BatchOrderQuery() {
 	requestURL := t.env.Url + consts.TRADE_BATCH_ORDER_QUERY
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_BATCH_ORDER_QUERY, string(requestBody), &t.env)
 }
+
+// TriggerOrdersPending 查询未触发条件单
+func (t *TradeCtrl) TriggerOrdersPending() {
+	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_TRIGGER_ORDERS_PENDING+"?instId=%s&orderType=%s&limit=%d", "BTC-USDT-SWAP", "limit", 100)
+	requestPath := fmt.Sprintf(consts.TRADE_TRIGGER_ORDERS_PENDING+"?instId=%s&orderType=%s&limit=%d", "BTC-USDT-SWAP", "limit", 100)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
+}
+
+// TriggerOrdersHistory 查询已触发条件单
+func (t *TradeCtrl) TriggerOrdersHistory() {
+	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_TRIGGER_ORDERS_HISTORY+"?instId=%s&OrderType=%s&limit=%d", "BTC-USDT-SWAP", "limit", 100)
+	requestPath := fmt.Sprintf(consts.TRADE_TRIGGER_ORDERS_HISTORY+"?instId=%s&OrderType=%s&limit=%d", "BTC-USDT-SWAP", "limit", 100)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
+}

@@ -107,6 +107,8 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"setPositionSLTP":              trade.SetPositionSLTP,              //✅
 			"cancelPositionSLTP":           trade.CancelPositionSLTP,           //✅
 			"modifyPositionSLTP":           trade.ModifyPositionSLTP,           //✅
+			"triggerOrdersPending":         trade.TriggerOrdersPending,         //✅
+			"triggerOrdersHistory":         trade.TriggerOrdersHistory,         //✅
 
 			"swapQueryPendingOrders": trade.SwapQueryPendingOrders,
 			"swapCalcelAllOrders":    trade.SwapCalcelAllOrders,
