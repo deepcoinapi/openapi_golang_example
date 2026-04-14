@@ -117,15 +117,9 @@ func (t *TradeCtrl) GetPosition() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
 
-func (t *TradeCtrl) SwapQueryOrderByOrderSysID() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT-SWAP", "1000587866808715")
-	requestPath := fmt.Sprintf(consts.TRADE_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT-SWAP", "1000587866808715")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) SpotQueryOrderByOrderSysID() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT", "1000188018518136")
-	requestPath := fmt.Sprintf(consts.TRADE_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT", "1000188018518136")
+func (t *TradeCtrl) QueryOrderByOrderSysID() {
+	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT-SWAP", "1000597765910558")
+	requestPath := fmt.Sprintf(consts.TRADE_ORDER_BY_ID+"?instId=%s&ordId=%s", "BTC-USDT-SWAP", "1000597765910558")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
 
@@ -158,7 +152,7 @@ func (t *TradeCtrl) ReplaceOrder() {
 	}
 
 	replaceOrder := &replaceOrderRequest{}
-	replaceOrder.OrderSysID = "1000587867035933"
+	replaceOrder.OrderSysID = "1000597765908207"
 	replaceOrder.TpTriggerPx = 110003
 	replaceOrder.SlTriggerPx = 70002
 
@@ -174,11 +168,11 @@ func (t *TradeCtrl) ReplaceOrder() {
 
 func (t *TradeCtrl) BatchCancelOrder() {
 	type batchCancelOrderRequest struct {
-		OrderSysIDs []string `json:"orderSysIDs"`
+		OrdIds []string `json:"ordIds"`
 	}
 
 	cancelOrders := &batchCancelOrderRequest{
-		OrderSysIDs: []string{"1000587865918838", "1000587865914949"},
+		OrdIds: []string{"1000587865918838", "1000587865914949"},
 	}
 
 	requestBody, err := json.Marshal(cancelOrders)
@@ -381,34 +375,6 @@ func (t *TradeCtrl) CancelTriggerOrder() {
 
 	requestURL := t.env.Url + consts.TRADE_CANCEL_TRIGGER_ORDER
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_CANCEL_TRIGGER_ORDER, string(requestBody), &t.env)
-}
-
-// BatchCancelOrderV2 V2批量撤单
-func (t *TradeCtrl) BatchCancelOrderV2() {
-	type batchCancelItem struct {
-		InstId string `json:"instId,omitempty"`
-		OrdId  string `json:"ordId,omitempty"`
-	}
-
-	type batchCancelRequest struct {
-		Orders []batchCancelItem `json:"orders"`
-	}
-
-	req := &batchCancelRequest{
-		Orders: []batchCancelItem{
-			{InstId: "BTC-USDT-SWAP", OrdId: "1000587866272245"},
-			{InstId: "ETH-USDT-SWAP", OrdId: "1000587866272246"},
-		},
-	}
-
-	requestBody, err := json.Marshal(req)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	requestURL := t.env.Url + consts.TRADE_BATCH_CANCEL_ORDER
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_BATCH_CANCEL_ORDER, string(requestBody), &t.env)
 }
 
 // ReplaceOrderSLTPV2 修改订单止盈止损
