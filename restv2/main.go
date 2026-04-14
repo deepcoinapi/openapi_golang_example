@@ -117,20 +117,23 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"extendListenKey": ws.Extend,       //✅
 
 			// copytrading
-			"leader-settings":   copytrading.LeaderSettings,   //✅
-			"support-contracts": copytrading.SupportContracts, //✅
-			"set-contracts":     copytrading.SetContracts,     //✅
-			"leader-position":   copytrading.LeaderPosition,   //✅
-			"estimate-profit":   copytrading.EstimateProfit,   //✅
-			"history-profit":    copytrading.HistoryProfit,    //✅
-			"follower-rank":     copytrading.FollowerRank,     //✅
+			"leader-settings":    copytrading.LeaderSettings,     //✅
+			"support-contracts":  copytrading.SupportContracts,   //✅
+			"set-contracts":      copytrading.SetContracts,       //✅
+			"leader-position":    copytrading.LeaderPosition,     //✅
+			"estimate-profit":    copytrading.EstimateProfit,     //✅
+			"history-profit":     copytrading.HistoryProfit,      //✅
+			"follower-rank":      copytrading.FollowerRank,       //✅
+			"positionType":       copytrading.PositionType,       //✅
+			"updatePositionType": copytrading.UpdatePositionType, //✅
 
 			// asset
-			"depositList":                asset.GetDepositList,
-			"withdrawList":               asset.GetWithdrawList,
 			"getInternalTransferSupport": asset.GetInternalTransferSupport,
 			"postInternalTransfer":       asset.PostInternalTransfer,
 			"getInternalTransferHistory": asset.GetInternalTransferHistory,
+
+			"depositList":  asset.GetDepositList,
+			"withdrawList": asset.GetWithdrawList,
 		},
 	}
 }

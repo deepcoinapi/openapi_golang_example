@@ -82,6 +82,7 @@ const (
 	COPYTRADING_ESTIMATE_PROFIT  string = "/deepcoin/v2/copytrading/estimate-profit"
 	COPYTRADING_HISTORY_PROFIT   string = "/deepcoin/v2/copytrading/history-profit"
 	COPYTRADING_FOLLOWER_RANK    string = "/deepcoin/v2/copytrading/follower-rank"
+	COPYTRADING_POSITION_TYPE    string = "/deepcoin/v2/copytrading/position-type"
 
 	ASSET_DEPOSIT_LIST  = "/deepcoin/v2/asset/deposit-list"
 	ASSET_WITHDARW_LIST = "/deepcoin/v2/asset/withdraw-list"

@@ -90,3 +90,30 @@ func (c *CopyTradingCtrl) FollowerRank() {
 	requestPath := fmt.Sprintf(consts.COPYTRADING_FOLLOWER_RANK+"?status=%d", 2)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &c.env)
 }
+
+// PositionType 获取仓位模式
+func (c *CopyTradingCtrl) PositionType() {
+	requestURL := fmt.Sprintf(c.env.Url + consts.COPYTRADING_POSITION_TYPE)
+	requestPath := fmt.Sprintf(consts.COPYTRADING_POSITION_TYPE)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &c.env)
+}
+
+// UpdatePositionType 更新仓位模式
+func (c *CopyTradingCtrl) UpdatePositionType() {
+	type updatePositionTypeRequest struct {
+		PositionType string `json:"positionType"`
+	}
+
+	req := &updatePositionTypeRequest{
+		PositionType: "1", // 1=双向持仓；2=单向持仓
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := c.env.Url + consts.COPYTRADING_POSITION_TYPE
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.COPYTRADING_POSITION_TYPE, string(requestBody), &c.env)
+}
