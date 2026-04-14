@@ -51,11 +51,11 @@ func (c *CopyTradingCtrl) SupportContracts() {
 
 func (c *CopyTradingCtrl) SetContracts() {
 	type setContractsRequest struct {
-		Constracts []string `json:"constracts"`
+		Contracts []string `json:"contracts"`
 	}
 
 	l := &setContractsRequest{}
-	l.Constracts = []string{"BTCUSDT", "ETHUSDT"}
+	l.Contracts = []string{"BTCUSDT", "ETHUSDT"}
 
 	requestBody, err := json.Marshal(l)
 	if err != nil {
@@ -88,11 +88,5 @@ func (c *CopyTradingCtrl) HistoryProfit() {
 func (c *CopyTradingCtrl) FollowerRank() {
 	requestURL := fmt.Sprintf(c.env.Url+consts.COPYTRADING_FOLLOWER_RANK+"?status=%d", 2)
 	requestPath := fmt.Sprintf(consts.COPYTRADING_FOLLOWER_RANK+"?status=%d", 2)
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &c.env)
-}
-
-func (c *CopyTradingCtrl) GetAccountIDs() {
-	requestURL := fmt.Sprintf(c.env.Url + consts.COPYTRADING_GET_ACCOUNTID)
-	requestPath := fmt.Sprintf(consts.COPYTRADING_GET_ACCOUNTID)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &c.env)
 }

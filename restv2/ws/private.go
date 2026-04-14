@@ -25,7 +25,7 @@ func (t *PrivateWsCtrl) GetListenKey() {
 }
 
 func (t *PrivateWsCtrl) Extend() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.ExtendListenKey+"?listenKey=%s", "3f8021a44a262e69344d5c522b613006")
-	requestPath := fmt.Sprintf(consts.ExtendListenKey+"?listenKey=%s", "3f8021a44a262e69344d5c522b613006")
+	requestURL := fmt.Sprintf(t.env.Url+consts.ExtendListenKey+"?listenKey=%s", "a04291a7ba8e6cb6e695763b6b0c5132")
+	requestPath := fmt.Sprintf(consts.ExtendListenKey+"?listenKey=%s", "a04291a7ba8e6cb6e695763b6b0c5132")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }

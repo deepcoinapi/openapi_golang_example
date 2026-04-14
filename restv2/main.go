@@ -112,19 +112,18 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"traceOrder":                   trade.TraceOrder,                   //✅
 			"traceOrderList":               trade.TraceOrderList,               //✅
 
-			// copytrading
-			"leader-settings":   copytrading.LeaderSettings,
-			"support-contracts": copytrading.SupportContracts,
-			"set-contracts":     copytrading.SetContracts,
-			"leader-position":   copytrading.LeaderPosition,
-			"estimate-profit":   copytrading.EstimateProfit,
-			"history-profit":    copytrading.HistoryProfit,
-			"follower-rank":     copytrading.FollowerRank,
-			"getAccountIDs":     copytrading.GetAccountIDs,
-
 			// WebSocket
-			"getListenKey":    ws.GetListenKey,
-			"extendListenKey": ws.Extend,
+			"getListenKey":    ws.GetListenKey, //✅
+			"extendListenKey": ws.Extend,       //✅
+
+			// copytrading
+			"leader-settings":   copytrading.LeaderSettings,   //✅
+			"support-contracts": copytrading.SupportContracts, //✅
+			"set-contracts":     copytrading.SetContracts,     //✅
+			"leader-position":   copytrading.LeaderPosition,   //✅
+			"estimate-profit":   copytrading.EstimateProfit,   //✅
+			"history-profit":    copytrading.HistoryProfit,    //✅
+			"follower-rank":     copytrading.FollowerRank,     //✅
 
 			// asset
 			"depositList":                asset.GetDepositList,
