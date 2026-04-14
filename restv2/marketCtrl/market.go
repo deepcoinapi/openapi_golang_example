@@ -43,8 +43,8 @@ func (m *MarketCtrl) GetMarketTickers() {
 
 // GetMarketIndexCandles 指数K线
 func (m *MarketCtrl) GetMarketIndexCandles() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=4H&startTime=%d&endTime=%d&limit=%d", "BTC-USDT-SWAP", 1775793600000, 1775866400000, 2)
-	requestPath := fmt.Sprintf(consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=4H&startTime=%d&endTime=%d&limit=%d", "BTC-USDT-SWAP", 1775793600000, 1775866400000, 2)
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=1H&startTime=%d&limit=%d", "BTC-USDT-SWAP", 1776081649633, 2)
+	requestPath := fmt.Sprintf(consts.MARKET_INDEX_CANDLES+"?instId=%s&bar=1H&startTime=%d&limit=%d", "BTC-USDT-SWAP", 1776081649633, 2)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 
@@ -113,15 +113,15 @@ func (m *MarketCtrl) GetMarketHandicapTrade() {
 
 // GetMarketFundingRate 资金费率
 func (m *MarketCtrl) GetMarketFundingRate() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_FUNDING_RATE+"?instId=%s", "BTC-USDT-SWAP")
-	requestPath := fmt.Sprintf(consts.MARKET_FUNDING_RATE+"?instId=%s", "BTC-USDT-SWAP")
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_FUNDING_RATE+"?instId=%s", "")
+	requestPath := fmt.Sprintf(consts.MARKET_FUNDING_RATE+"?instId=%s", "")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 
 // GetMarketCurrentFundingRate 当前资金费率
 func (m *MarketCtrl) GetMarketCurrentFundingRate() {
-	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_CURRENT_FUNDING_RATE+"?instId=%s", "BTCUSDT")
-	requestPath := fmt.Sprintf(consts.MARKET_CURRENT_FUNDING_RATE+"?instId=%s", "BTCUSDT")
+	requestURL := fmt.Sprintf(m.env.Url+consts.MARKET_CURRENT_FUNDING_RATE+"?instId=%s", "BTC-USDT")
+	requestPath := fmt.Sprintf(consts.MARKET_CURRENT_FUNDING_RATE+"?instId=%s", "BTC-USDT")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &m.env)
 }
 

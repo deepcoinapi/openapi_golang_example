@@ -411,30 +411,6 @@ func (t *TradeCtrl) BatchCancelOrderV2() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_BATCH_CANCEL_ORDER, string(requestBody), &t.env)
 }
 
-// ReplaceOrderV2 改单
-func (t *TradeCtrl) ReplaceOrderV2() {
-	type replaceOrderRequest struct {
-		OrdId string  `json:"ordId,omitempty"`
-		Px    float64 `json:"px,omitempty"`
-		Sz    float64 `json:"sz,omitempty"`
-	}
-
-	req := &replaceOrderRequest{
-		OrdId: "1000587866272245",
-		Px:    66000,
-		Sz:    1.5,
-	}
-
-	requestBody, err := json.Marshal(req)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	requestURL := t.env.Url + consts.TRADE_REPLACE_ORDER
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_REPLACE_ORDER, string(requestBody), &t.env)
-}
-
 // ReplaceOrderSLTPV2 修改订单止盈止损
 func (t *TradeCtrl) ReplaceOrderSLTPV2() {
 	type replaceSLTPRequest struct {

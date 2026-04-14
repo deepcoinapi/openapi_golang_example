@@ -87,6 +87,8 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 
 			// trade
 			"order":                            trade.Order,
+			"batchOrders":                      trade.BatchOrders,
+			"replace-order":                    trade.ReplaceOrder,
 			"cancelOrder":                      trade.CancelOrder,
 			"tradeFills":                       trade.TradeFills,
 			"historyOrder":                     trade.HistoryOrder,
@@ -99,7 +101,6 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"spotFinishQueryOrderByOrderSysID": trade.SpotFinishQueryOrderByOrderSysID,
 			"getPosition":                      trade.GetPosition,
 			"getFundingRate":                   trade.GetFundingRate,
-			"replace-order":                    trade.ReplaceOrder,
 			"batch-cancel-order":               trade.BatchCancelOrder,
 			"swapQueryPendingOrders":           trade.SwapQueryPendingOrders,
 			"swapCalcelAllOrders":              trade.SwapCalcelAllOrders,
@@ -107,11 +108,9 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"swapReplacePositionSlTp":          trade.SwapReplacePositionSlTp,
 
 			// V2 交易接口
-			"batchOrders":           trade.BatchOrders,
 			"triggerOrder":          trade.TriggerOrder,
 			"cancelTriggerOrder":    trade.CancelTriggerOrder,
 			"batchCancelOrderV2":    trade.BatchCancelOrderV2,
-			"replaceOrderV2":        trade.ReplaceOrderV2,
 			"replaceOrderSLTPV2":    trade.ReplaceOrderSLTPV2,
 			"setPositionSLTP":       trade.SetPositionSLTP,
 			"cancelPositionSLTP":    trade.CancelPositionSLTP,
