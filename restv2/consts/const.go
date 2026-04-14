@@ -93,4 +93,5 @@ const (
 	INTERNAL_TRANSFER_SUPPORT string = "/deepcoin/v2/internal-transfer/support"
 	INTERNAL_TRANSFER         string = "/deepcoin/v2/internal-transfer"
 	INTERNAL_TRANSFER_HISTORY string = "/deepcoin/v2/internal-transfer/history-order"
+	SUB_ACCOUNT_TRANSFER      string = "/deepcoin/v2/sub-account/sub-account-transfer"
 )

@@ -127,11 +127,15 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"positionType":       copytrading.PositionType,       //✅
 			"updatePositionType": copytrading.UpdatePositionType, //✅
 
-			// asset
-			"getInternalTransferSupport": asset.GetInternalTransferSupport,
-			"postInternalTransfer":       asset.PostInternalTransfer,
-			"getInternalTransferHistory": asset.GetInternalTransferHistory,
+			// internal-transfer
+			"getInternalTransferSupport": asset.GetInternalTransferSupport, //✅
+			"postInternalTransfer":       asset.PostInternalTransfer,       //✅
+			"getInternalTransferHistory": asset.GetInternalTransferHistory, //✅
 
+			// subAccount
+			"subAccountTransfer": asset.SubAccountTransfer, //✅
+
+			// asset
 			"depositList":  asset.GetDepositList,
 			"withdrawList": asset.GetWithdrawList,
 		},

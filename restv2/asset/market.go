@@ -65,3 +65,33 @@ func (a *AssetCtrl) PostInternalTransfer() {
 	requestURL := a.env.Url + consts.INTERNAL_TRANSFER
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.INTERNAL_TRANSFER, string(requestBody), &a.env)
 }
+
+// SubAccountTransfer 子母账号划转
+func (a *AssetCtrl) SubAccountTransfer() {
+	type subAccountTransferRequest struct {
+		FromUid string `json:"fromUid"`
+		ToUid   string `json:"toUid"`
+		FromId  string `json:"fromId"`
+		ToId    string `json:"toId"`
+		Amount  string `json:"amount"`
+		Coin    string `json:"coin"`
+	}
+
+	req := &subAccountTransferRequest{
+		FromUid: "36007195", // 划出uid
+		ToUid:   "36007196", // 划入uid
+		FromId:  "7",        // 划出账户id (1:现货账户 2:钱包账户 5:反向合约账户 7:正向合约账户)
+		ToId:    "7",        // 划入账户id (1:现货账户 2:钱包账户 5:反向合约账户 7:正向合约账户)
+		Amount:  "10",       // 金额
+		Coin:    "USDT",     // 币种
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := a.env.Url + consts.SUB_ACCOUNT_TRANSFER
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.SUB_ACCOUNT_TRANSFER, string(requestBody), &a.env)
+}
