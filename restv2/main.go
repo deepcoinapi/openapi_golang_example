@@ -109,15 +109,8 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"modifyPositionSLTP":           trade.ModifyPositionSLTP,           //✅
 			"triggerOrdersPending":         trade.TriggerOrdersPending,         //✅
 			"triggerOrdersHistory":         trade.TriggerOrdersHistory,         //✅
-
-			"swapQueryPendingOrders": trade.SwapQueryPendingOrders,
-			"swapCalcelAllOrders":    trade.SwapCalcelAllOrders,
-
-			"swapReplacePositionSlTp": trade.SwapReplacePositionSlTp,
-
-			// V2 交易接口
-
-			"orderList": trade.OrderList,
+			"traceOrder":                   trade.TraceOrder,                   //✅
+			"traceOrderList":               trade.TraceOrderList,               //✅
 
 			// copytrading
 			"leader-settings":   copytrading.LeaderSettings,

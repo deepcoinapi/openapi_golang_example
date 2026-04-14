@@ -155,37 +155,6 @@ func (t *TradeCtrl) BatchCancelOrder() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_BATCH_CANCEL_ORDER, string(requestBody), &t.env)
 }
 
-func (t *TradeCtrl) SwapQueryPendingOrders() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_PENDING_ORDER_V2+"?instId=%s&index=%d&limit=%d", "BTC-USDT-SWAP", 1, 100)
-	requestPath := fmt.Sprintf(consts.TRADE_PENDING_ORDER_V2+"?instId=%s&index=%d&limit=%d", "BTC-USDT-SWAP", 1, 100)
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
-func (t *TradeCtrl) SwapCalcelAllOrders() {
-	type calcelAllOrdersRequest struct {
-		InstrumentID  string `json:"instrumentID"`
-		ProductGroup  string `json:"productGroup"`
-		IsCrossMargin int32  `json:"IsCrossMargin"`
-		IsMergeMode   int32  `json:"IsMergeMode"`
-	}
-
-	req := &calcelAllOrdersRequest{
-		InstrumentID:  "BTCUSDT",
-		ProductGroup:  "SwapU",
-		IsCrossMargin: 1,
-		IsMergeMode:   0,
-	}
-
-	requestBody, err := json.Marshal(req)
-	if err != nil {
-		fmt.Println("JSON编码错误:", err)
-		return
-	}
-
-	requestURL := t.env.Url + consts.TRADE_SWAP_CANCEL_ALL
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_SWAP_CANCEL_ALL, string(requestBody), &t.env)
-}
-
 func (t *TradeCtrl) ReplaceOrderSlTp() {
 	type replaceOrderRequest struct {
 		OrderSysID  string  `json:"ordId"`
@@ -205,31 +174,6 @@ func (t *TradeCtrl) ReplaceOrderSlTp() {
 
 	requestURL := t.env.Url + consts.TRADE_REPLACE_ORDER_SLTP
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_REPLACE_ORDER_SLTP, string(requestBody), &t.env)
-}
-
-func (t *TradeCtrl) SwapReplacePositionSlTp() {
-	type replacePosSlTpRequest struct {
-		OrderSysID   string  `json:"orderSysID"`
-		ProductGroup string  `json:"productGroup"`
-		TpTriggerPx  float64 `json:"tpTriggerPx"`
-		SlTriggerPx  float64 `json:"slTriggerPx"`
-		Volume       float64 `json:"volume"`
-	}
-
-	replaceOrder := &replacePosSlTpRequest{}
-	replaceOrder.OrderSysID = "1000588139491613"
-
-	replaceOrder.TpTriggerPx = 100006
-	replaceOrder.SlTriggerPx = 80006
-	replaceOrder.Volume = 0
-	requestBody, err := json.Marshal(replaceOrder)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	requestURL := t.env.Url + consts.TRADE_REPLACE_POS_SLTP
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_REPLACE_POS_SLTP, string(requestBody), &t.env)
 }
 
 // =================== V2 交易接口示例 ===================
@@ -520,13 +464,6 @@ func (t *TradeCtrl) ClosePositionByIds() {
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_CLOSE_POSITION_BY_IDS, string(requestBody), &t.env)
 }
 
-// OrderList 订单列表
-func (t *TradeCtrl) OrderList() {
-	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_ORDER_LIST+"?instId=%s&ordType=%s", "BTC-USDT-SWAP", "limit")
-	requestPath := fmt.Sprintf(consts.TRADE_ORDER_LIST+"?instId=%s&ordType=%s", "BTC-USDT-SWAP", "limit")
-	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
-}
-
 // BatchOrderQuery 批量查询订单
 func (t *TradeCtrl) BatchOrderQuery() {
 	type orderQueryItem struct {
@@ -573,5 +510,38 @@ func (t *TradeCtrl) TriggerOrdersPending() {
 func (t *TradeCtrl) TriggerOrdersHistory() {
 	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_TRIGGER_ORDERS_HISTORY+"?instId=%s&OrderType=%s&limit=%d", "BTC-USDT-SWAP", "limit", 100)
 	requestPath := fmt.Sprintf(consts.TRADE_TRIGGER_ORDERS_HISTORY+"?instId=%s&OrderType=%s&limit=%d", "BTC-USDT-SWAP", "limit", 100)
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
+}
+
+// TraceOrder 追踪出场委托单
+func (t *TradeCtrl) TraceOrder() {
+	type traceOrderRequest struct {
+		InstId       string `json:"instId,omitempty"`
+		RetracePoint string `json:"retracePoint,omitempty"`
+		TriggerPrice string `json:"triggerPrice,omitempty"`
+		PosSide      string `json:"posSide,omitempty"`
+	}
+
+	req := &traceOrderRequest{
+		InstId:       "BTC-USDT-SWAP",
+		RetracePoint: "100",
+		TriggerPrice: "95000",
+		PosSide:      consts.POSITION_SIDE_LONG,
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := t.env.Url + consts.TRADE_TRACE_ORDER
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.TRADE_TRACE_ORDER, string(requestBody), &t.env)
+}
+
+// TraceOrderList 查看追踪出场委托单
+func (t *TradeCtrl) TraceOrderList() {
+	requestURL := fmt.Sprintf(t.env.Url+consts.TRADE_TRACE_ORDER_LIST+"?instId=%s", "BTC-USDT-SWAP")
+	requestPath := fmt.Sprintf(consts.TRADE_TRACE_ORDER_LIST+"?instId=%s", "BTC-USDT-SWAP")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &t.env)
 }
