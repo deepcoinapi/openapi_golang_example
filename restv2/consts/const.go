@@ -69,13 +69,14 @@ const (
 	TRADE_TRIGGER_ORDERS_HISTORY string = "/deepcoin/v2/trade/trigger-orders-history"
 	TRADE_TRACE_ORDER            string = "/deepcoin/v2/trade/trace-order"
 	TRADE_TRACE_ORDER_LIST       string = "/deepcoin/v2/trade/trace-order-list"
-	TRADE_DSL_TRIGGER_ORDER      string = "/deepcoin/v2/trade/dsl-trigger-order"
-	TRADE_BACKTEST_RUN           string = "/deepcoin/v2/trade/backtest-run"
 	TRADE_FILLS                  string = "/deepcoin/v2/trade/fills"
 	TRADE_HISTORY_ORDER          string = "/deepcoin/v2/trade/orders-history"
 	TRADE_PENDING_ORDER          string = "/deepcoin/v2/trade/orders-pending"
 	TRADE_ORDER_BY_ID            string = "/deepcoin/v2/trade/orderByID"
 	TRADE_FINISH_ORDER_BY_ID     string = "/deepcoin/v2/trade/finishOrderByID"
+
+	TRADE_DSL_TRIGGER_ORDER string = "/deepcoin/v2/trade/dsl-trigger-order"
+	TRADE_BACKTEST_RUN      string = "/deepcoin/v2/trade/backtest-run"
 
 	COPYTRADING_LEADER_SETTINGS  string = "/deepcoin/v2/copytrading/leader-settings"
 	COPYTRADING_SUPPORT_CONTRACT string = "/deepcoin/v2/copytrading/support-contracts"
