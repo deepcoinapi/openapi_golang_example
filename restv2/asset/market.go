@@ -109,3 +109,38 @@ func (a *AssetCtrl) SubAccountList() {
 	requestPath := fmt.Sprintf(consts.SUB_ACCOUNT_LIST)
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &a.env)
 }
+
+// RechargeChainList 充值链列表
+func (a *AssetCtrl) RechargeChainList() {
+	requestURL := fmt.Sprintf(a.env.Url+consts.RECHARGE_CHAIN_LIST+"?currency_id=%s&lang=%s", "USDT", "zh")
+	requestPath := fmt.Sprintf(consts.RECHARGE_CHAIN_LIST+"?currency_id=%s&lang=%s", "USDT", "zh")
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &a.env)
+}
+
+// AssetTransfer 资金划转
+func (a *AssetCtrl) AssetTransfer() {
+	type assetTransferRequest struct {
+		CurrencyId string `json:"currency_id"`
+		Amount     string `json:"amount"`
+		FromId     int    `json:"from_id"`
+		ToId       int    `json:"to_id"`
+		Uid        int    `json:"uid"`
+	}
+
+	req := &assetTransferRequest{
+		CurrencyId: "USDT",   // 币种ID
+		Amount:     "10",     // 划转金额
+		FromId:     7,        // 转出账户ID (7:正向合约账户)
+		ToId:       1,        // 转入账户ID (1:现货账户)
+		Uid:        36007196, // 用户ID
+	}
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	requestURL := a.env.Url + consts.ASSET_TRANSFER
+	signature.DoHttp(requestURL, consts.HTTP_METHOD_POST, consts.ASSET_TRANSFER, string(requestBody), &a.env)
+}

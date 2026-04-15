@@ -151,9 +151,10 @@ func NewCommandRegistry(env *structs.Env) *CommandRegistry {
 			"backtestRun":     trade.BacktestRun,     //✅
 
 			// asset
-			"depositList":  asset.GetDepositList,  //✅
-			"withdrawList": asset.GetWithdrawList, //✅
-
+			"depositList":       asset.GetDepositList,  //✅
+			"withdrawList":      asset.GetWithdrawList, //✅
+			"rechargeChainList": asset.RechargeChainList,
+			"assetTransfer":     asset.AssetTransfer,
 		},
 	}
 }

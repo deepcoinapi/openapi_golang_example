@@ -89,6 +89,8 @@ const (
 
 	ASSET_DEPOSIT_LIST  = "/deepcoin/v2/asset/deposit-list"
 	ASSET_WITHDARW_LIST = "/deepcoin/v2/asset/withdraw-list"
+	RECHARGE_CHAIN_LIST = "/deepcoin/v2/asset/recharge-chain-list"
+	ASSET_TRANSFER      = "/deepcoin/v2/asset/transfer"
 
 	ListenKey       string = "/deepcoin/v2/listenkey/acquire"
 	ExtendListenKey string = "/deepcoin/v2/listenkey/extend"
