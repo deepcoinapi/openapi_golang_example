@@ -113,18 +113,15 @@ func (t *TradeCtrl) FinishQueryOrderByOrderSysID() {
 
 func (t *TradeCtrl) ReplaceOrder() {
 	type replaceOrderRequest struct {
-		OrderSysID   string  `json:"orderSysID"`
-		Price        float64 `json:"price"`
-		Volume       float64 `json:"volume"`
-		ProductGroup string  `json:"productGroup"`
-		TpTriggerPx  float64 `json:"tpTriggerPx"`
-		SlTriggerPx  float64 `json:"slTriggerPx"`
+		OrderSysID string  `json:"ordId"`
+		Price      float64 `json:"px"`
+		Volume     float64 `json:"sz"`
 	}
 
 	replaceOrder := &replaceOrderRequest{}
 	replaceOrder.OrderSysID = "1000597765908207"
-	replaceOrder.TpTriggerPx = 110003
-	replaceOrder.SlTriggerPx = 70002
+	replaceOrder.Price = 110003
+	replaceOrder.Volume = 111
 
 	requestBody, err := json.Marshal(replaceOrder)
 	if err != nil {
@@ -480,7 +477,6 @@ func (t *TradeCtrl) BatchOrderQuery() {
 		Orders: []orderQueryItem{
 			{
 				InstId: "BTC-USDT-SWAP",
-				OrdId:  "1000597586292096",
 			},
 			{
 				InstId: "ETH-USDT-SWAP",
@@ -523,9 +519,9 @@ func (t *TradeCtrl) TraceOrder() {
 	}
 
 	req := &traceOrderRequest{
-		InstId:       "BTC-USDT-SWAP",
-		RetracePoint: "100",
-		TriggerPrice: "95000",
+		InstId:       "ETH-USDT-SWAP",
+		RetracePoint: "0",
+		TriggerPrice: "-1",
 		PosSide:      consts.POSITION_SIDE_LONG,
 	}
 
