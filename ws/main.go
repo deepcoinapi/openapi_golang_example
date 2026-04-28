@@ -11,7 +11,7 @@ type WSClient struct {
 }
 
 func NewWSClient() (*WSClient, error) {
-	conn, _, err := websocket.DefaultDialer.Dial("wss://test-wss.goodtest.cc/v1/private?listenKey=3f8021a44a262e69344d5c522b613006", nil)
+	conn, _, err := websocket.DefaultDialer.Dial("wss://stream.deepcoin.com/v1/private?listenKey=3f8021a44a262e69344d5c522b613006", nil)
 	if err != nil {
 		return nil, err
 	}

@@ -29,9 +29,6 @@ func (c *CopyTradingCtrl) LeaderSettings() {
 
 	l := &leaderSettingsRequest{}
 	l.Status = 0
-	l.HomeMode = 1
-	l.IsClosedCopyCode = true
-	l.CopyCode = ""
 
 	requestBody, err := json.Marshal(l)
 	if err != nil {

@@ -19,8 +19,8 @@ func NewAssetCtrl(env *structs.Env) *AssetCtrl {
 }
 
 func (a *AssetCtrl) GetDepositList() {
-	requestURL := fmt.Sprintf(a.env.Url+consts.ASSET_DEPOSIT_LIST+"?size=%s", "50")
-	requestPath := fmt.Sprintf(consts.ASSET_DEPOSIT_LIST+"?size=%s", "50")
+	requestURL := fmt.Sprintf(a.env.Url+consts.ASSET_DEPOSIT_LIST+"?ccy=USDT&&size=%s", "50")
+	requestPath := fmt.Sprintf(consts.ASSET_DEPOSIT_LIST+"?ccy=USDT&&size=%s", "50")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &a.env)
 }
 
@@ -78,12 +78,12 @@ func (a *AssetCtrl) SubAccountTransfer() {
 	}
 
 	req := &subAccountTransferRequest{
-		FromUid: "36007195", // 划出uid
-		ToUid:   "36007196", // 划入uid
+		FromUid: "36033735", // 划出uid
+		ToUid:   "36034023", // 划入uid
 		FromId:  "7",        // 划出账户id (1:现货账户 2:钱包账户 5:反向合约账户 7:正向合约账户)
 		ToId:    "7",        // 划入账户id (1:现货账户 2:钱包账户 5:反向合约账户 7:正向合约账户)
 		Amount:  "10",       // 金额
-		Coin:    "USDT",     // 币种
+		Coin:    "UDST",     // 币种
 	}
 
 	requestBody, err := json.Marshal(req)
@@ -112,15 +112,15 @@ func (a *AssetCtrl) SubAccountList() {
 
 // RechargeChainList 充值链列表
 func (a *AssetCtrl) RechargeChainList() {
-	requestURL := fmt.Sprintf(a.env.Url+consts.RECHARGE_CHAIN_LIST+"?currency_id=%s&lang=%s", "USDT", "zh")
-	requestPath := fmt.Sprintf(consts.RECHARGE_CHAIN_LIST+"?currency_id=%s&lang=%s", "USDT", "zh")
+	requestURL := fmt.Sprintf(a.env.Url+consts.RECHARGE_CHAIN_LIST+"?ccy=%s&lang=%s", "USDT", "zh")
+	requestPath := fmt.Sprintf(consts.RECHARGE_CHAIN_LIST+"?ccy=%s&lang=%s", "USDT", "zh")
 	signature.DoHttp(requestURL, consts.HTTP_METHOD_GET, requestPath, "", &a.env)
 }
 
 // AssetTransfer 资金划转
 func (a *AssetCtrl) AssetTransfer() {
 	type assetTransferRequest struct {
-		CurrencyId string `json:"currency_id"`
+		CurrencyId string `json:"ccy"`
 		Amount     string `json:"amount"`
 		FromId     int    `json:"from_id"`
 		ToId       int    `json:"to_id"`

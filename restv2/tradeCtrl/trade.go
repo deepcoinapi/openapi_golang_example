@@ -520,8 +520,8 @@ func (t *TradeCtrl) TraceOrder() {
 
 	req := &traceOrderRequest{
 		InstId:       "ETH-USDT-SWAP",
-		RetracePoint: "0",
-		TriggerPrice: "-1",
+		RetracePoint: "10",
+		TriggerPrice: "9999999",
 		PosSide:      consts.POSITION_SIDE_LONG,
 	}
 
