@@ -43,7 +43,7 @@ func (t *TradeCtrl) Order() {
 	order.Ccy = "USDT"
 	order.Side = consts.SIDE_BUY
 	order.OrdType = consts.ORDER_TYPE_MARKET
-	order.Sz = "90000"
+	order.Sz = "100"
 	order.Px = "1"
 	order.PosSide = consts.POSITION_SIDE_LONG
 	order.TdMode = consts.CROSS
